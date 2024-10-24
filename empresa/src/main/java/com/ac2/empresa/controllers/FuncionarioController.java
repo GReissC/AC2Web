@@ -29,7 +29,7 @@ public class FuncionarioController {
 
     @PostMapping
     public void updateFuncionario(@RequestBody Integer funcionarioid, FuncionarioDTO funcionarioDTO) {
-        funcionarioServiceImp.editar(funcionarioid, funcionarioDTO);  
+        funcionarioServiceImp.editar(funcionarioid, funcionarioDTO);
     }
 
     @PostMapping

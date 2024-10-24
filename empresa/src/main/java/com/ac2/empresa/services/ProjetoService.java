@@ -9,5 +9,6 @@ public interface ProjetoService {
     void obterTodos();
     void editar(Integer projetoid, ProjetoDTO projetoDTO);
     void deletar(Integer projetoid);
+    void buscarPorId(Integer projetoid);
 
 }

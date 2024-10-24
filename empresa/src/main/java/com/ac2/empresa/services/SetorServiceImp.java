@@ -45,5 +45,9 @@ public void deletar(Integer setorid) {
     Setor setordeletado = setorRepository.getReferenceById(setorid);
     setorRepository.delete(setordeletado);
 }
-    
+
+@Override
+public void buscarPorId(Integer setorid) {
+    setorRepository.findById(setorid);
+}
 }

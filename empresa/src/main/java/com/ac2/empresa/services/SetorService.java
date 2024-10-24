@@ -9,5 +9,6 @@ public interface SetorService {
     void obterTodos();
     void editar(Integer setorid, SetorDTO setorDTO);
     void deletar(Integer setorid);
+    void buscarPorId(Integer setorid);
     
 }

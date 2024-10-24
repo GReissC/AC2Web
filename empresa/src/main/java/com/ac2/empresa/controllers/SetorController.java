@@ -29,7 +29,7 @@ public class SetorController {
 
     @PostMapping
     public void updateFuncionario(@RequestBody Integer setorid, SetorDTO setorDTO) {
-        setorServiceImp.editar(setorid, setorDTO);  
+        setorServiceImp.editar(setorid, setorDTO);
     }
 
     @PostMapping

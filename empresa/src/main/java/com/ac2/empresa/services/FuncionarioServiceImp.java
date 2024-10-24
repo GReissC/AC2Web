@@ -41,5 +41,5 @@ public void deletar(Integer funcionarioid) {
     Funcionario funcionariodeletado = funcionarioRepository.getReferenceById(funcionarioid);
     funcionarioRepository.delete(funcionariodeletado);
 }
-    
+
 }

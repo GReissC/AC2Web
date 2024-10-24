@@ -3,11 +3,13 @@ package com.ac2.empresa.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import com.ac2.empresa.dtos.ProjetoDTO;
+import com.ac2.empresa.models.Funcionario;
 import com.ac2.empresa.models.Projeto;
 import com.ac2.empresa.repositories.ProjetoRepository;
+import com.ac2.empresa.repositories.FuncionarioRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -16,10 +18,11 @@ public class ProjetoServiceImp implements ProjetoService {
 
     @Autowired
     ProjetoRepository projetoRepository;
+    FuncionarioRepository funcionarioRepository;
 
     @Override
     public void salvar(ProjetoDTO projetoDTO) {
-        Projeto projetocriado = new Projeto(projetoDTO.getProjetoiddto(), projetoDTO.getProjetodescricaodto(), 
+        Projeto projetocriado = new Projeto(projetoDTO.getProjetoiddto(), projetoDTO.getProjetodescricaodto(),
         projetoDTO.getProjetodatainiciodto(), projetoDTO.getProjetodatafimdto(),null);
         projetoRepository.save(projetocriado);
 
@@ -46,5 +49,23 @@ public class ProjetoServiceImp implements ProjetoService {
         Projeto projetodeletado = projetoRepository.getReferenceById(projetoid);
         projetoRepository.delete(projetodeletado);
     }
+
+    @Override
+    public void buscarPorId(Integer projetoid) {
+        projetoRepository.findById(projetoid);
+    }
+
+    @Transactional
+    public void vincularFuncionario(Integer projetoid, Integer funcionarioid){
+        Projeto projeto = projetoRepository.findById(projetoid)
+                .orElseThrow(() -> new RuntimeException("Projeto não encontrado"));
+
+        Funcionario funcionario = funcionarioRepository.findById(funcionarioid)
+                .orElseThrow(() -> new RuntimeException("Funcionário não encontrado"));
+
+        projeto.getFuncionarios().add(funcionario);
+
+        projetoRepository.save(projeto);
+    };
 
 }

@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class SetorDTO {
 
     private Integer setoriddto;
-    private String setornomedto; 
+    private String setornomedto;
     
 }

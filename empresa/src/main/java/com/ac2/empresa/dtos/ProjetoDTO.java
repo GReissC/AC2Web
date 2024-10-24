@@ -17,4 +17,5 @@ public class ProjetoDTO {
     private String projetodescricaodto;
     private LocalDate projetodatainiciodto;
     private LocalDate projetodatafimdto;
+    
 }
