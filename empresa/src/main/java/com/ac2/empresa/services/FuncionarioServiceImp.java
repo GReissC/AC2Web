@@ -1,5 +1,7 @@
 package com.ac2.empresa.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +42,12 @@ public void editar(Integer funcionarioid, FuncionarioDTO funcionarioDTO) {
 public void deletar(Integer funcionarioid) {
     Funcionario funcionariodeletado = funcionarioRepository.getReferenceById(funcionarioid);
     funcionarioRepository.delete(funcionariodeletado);
+}
+
+@Override
+public List<Funcionario> projetosEnvolvidos(Integer funcionarioid) {
+    List<Funcionario> funcionarios = funcionarioRepository.query3C(funcionarioid);
+    return funcionarios;
 }
 
 }

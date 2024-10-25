@@ -16,8 +16,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Setor {
+    
     @Id
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer setorid;
@@ -25,4 +25,9 @@ public class Setor {
     
     @OneToMany(mappedBy = "setor")
     private List<Funcionario> funcionariosetor;
+
+    public Setor(Integer setorid, String setornome){
+        this.setorid = setorid;
+        this.setornome = setornome;
+    }
 }

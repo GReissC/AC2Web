@@ -1,6 +1,7 @@
 package com.ac2.empresa.repositories;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,15 +14,15 @@ public interface ProjetoRepository extends JpaRepository<Projeto, Integer> {
     @Query("""
                 Select p From Projeto p
                 Left Join Fetch funcionarios
-                Where p.id =: projetoid
+                Where p.id = :projetoid
 
             """)
-    Projeto query3A(@Param("projetoid")Integer projetoid);
+    List<Projeto> query3A(@Param("projetoid")Integer projetoid);
 
     @Query("""
             Select p From Projeto p
-            Where projetodatainicio Between datacomeco AND datafim
+        Where projetodatainicio Between :datacomeco AND :datafim
             """)
-    Projeto query3B(@Param("datacomeco") LocalDate datacomeco, @Param("datafim") LocalDate datafim);
+    List<Projeto> query3B(@Param("datacomeco") LocalDate datacomeco, @Param("datafim") LocalDate datafim);
 
 }

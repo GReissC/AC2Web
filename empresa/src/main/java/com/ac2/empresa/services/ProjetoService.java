@@ -1,7 +1,11 @@
 package com.ac2.empresa.services;
 
 
+import java.time.LocalDate;
+import java.util.List;
+
 import com.ac2.empresa.dtos.ProjetoDTO;
+import com.ac2.empresa.models.Projeto;
 
 public interface ProjetoService {
 
@@ -10,5 +14,7 @@ public interface ProjetoService {
     void editar(Integer projetoid, ProjetoDTO projetoDTO);
     void deletar(Integer projetoid);
     void buscarPorId(Integer projetoid);
+    List<Projeto> dadosAndFuncionariosDoProjeto(Integer projetoid);
+    List<Projeto> projetoPordata(Integer projetoid, LocalDate projetodatainicio, LocalDate projetodatafim);
 
 }

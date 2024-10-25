@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.ac2.empresa.models.Funcionario;
-import com.ac2.empresa.models.Projeto;
 
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Integer> {
 
@@ -18,6 +17,6 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Intege
             Left Join Fetch projetos
             Where f.id =: funcionarioid
             """)
-    List<Projeto> query3C(@Param("funcionarioid") Integer funcionarioid);
+    List<Funcionario> query3C(@Param("funcionarioid") Integer funcionarioid);
     
 }

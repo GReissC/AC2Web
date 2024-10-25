@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
@@ -17,8 +18,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Funcionario {
-@GeneratedValue(strategy = GenerationType.IDENTITY)
 
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer funcionarioid;
     private String funcionarionome;
 
@@ -29,4 +32,7 @@ public class Funcionario {
     @JoinColumn(name = "setorid")
     private Setor setor;
 
+    public Funcionario (String funcionarionome){
+        this.funcionarionome = funcionarionome;
+    }
 }

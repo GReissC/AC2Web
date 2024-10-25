@@ -17,6 +17,6 @@ public interface SetorRepository extends JpaRepository<Setor, Integer> {
             Left Join Fetch funcionariosetor
             Where s.id =: setorid
             """)
-    List<Funcionario> query3D(@Param("setorid") Integer setorid);
+    List<Setor> query3D(@Param("setorid") Integer setorid);
     
 }

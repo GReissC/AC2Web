@@ -1,7 +1,10 @@
 package com.ac2.empresa.services;
 
 
+import java.util.List;
+
 import com.ac2.empresa.dtos.SetorDTO;
+import com.ac2.empresa.models.Setor;
 
 public interface SetorService {
 
@@ -10,5 +13,5 @@ public interface SetorService {
     void editar(Integer setorid, SetorDTO setorDTO);
     void deletar(Integer setorid);
     void buscarPorId(Integer setorid);
-    
+    List<Setor> buscarFuncionarios(Integer setorid);
 }

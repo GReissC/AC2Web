@@ -1,5 +1,8 @@
 package com.ac2.empresa.services;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,6 +69,18 @@ public class ProjetoServiceImp implements ProjetoService {
         projeto.getFuncionarios().add(funcionario);
 
         projetoRepository.save(projeto);
+    }
+
+    @Override
+    public List<Projeto> dadosAndFuncionariosDoProjeto(Integer projetoid) {
+        List<Projeto> projetos = projetoRepository.query3A(projetoid);
+        return projetos;
+    }
+
+    @Override
+    public List<Projeto> projetoPordata(Integer projetoid, LocalDate projetodatainicio, LocalDate projetodatafim) {
+        List<Projeto> projetosData = projetoRepository.query3B(null, null);
+        return projetosData;
     };
 
 }

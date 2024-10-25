@@ -1,10 +1,9 @@
 package com.ac2.empresa.services;
 
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 import com.ac2.empresa.dtos.SetorDTO;
 import com.ac2.empresa.models.Setor;
@@ -14,8 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class SetorServiceImp implements SetorService{
-
+public class SetorServiceImp implements SetorService {
 
     @Autowired
     private SetorRepository setorRepository;
@@ -27,27 +25,33 @@ public class SetorServiceImp implements SetorService{
 
     }
 
-@Override
-public void obterTodos() {
-    setorRepository.findAll();
-}
+    @Override
+    public void obterTodos() {
+        setorRepository.findAll();
+    }
 
-@Override
-public void editar(Integer setorid, SetorDTO setorDTO) {
-    Setor setoreditado = setorRepository.getReferenceById(setorid);
-    setoreditado.setSetornome(setorDTO.getSetornomedto());
-    setorRepository.save(setoreditado);
-    
-}
+    @Override
+    public void editar(Integer setorid, SetorDTO setorDTO) {
+        Setor setoreditado = setorRepository.getReferenceById(setorid);
+        setoreditado.setSetornome(setorDTO.getSetornomedto());
+        setorRepository.save(setoreditado);
 
-@Override
-public void deletar(Integer setorid) {
-    Setor setordeletado = setorRepository.getReferenceById(setorid);
-    setorRepository.delete(setordeletado);
-}
+    }
 
-@Override
-public void buscarPorId(Integer setorid) {
-    setorRepository.findById(setorid);
-}
+    @Override
+    public void deletar(Integer setorid) {
+        Setor setordeletado = setorRepository.getReferenceById(setorid);
+        setorRepository.delete(setordeletado);
+    }
+
+    @Override
+    public void buscarPorId(Integer setorid) {
+        setorRepository.findById(setorid);
+    }
+
+    @Override
+    public List<Setor> buscarFuncionarios(Integer setorid) {
+        List<Setor> funcionariosSetor = setorRepository.query3D(setorid);
+        return funcionariosSetor;
+    }
 }
