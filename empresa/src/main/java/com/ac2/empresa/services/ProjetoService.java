@@ -15,6 +15,6 @@ public interface ProjetoService {
     void deletar(Integer projetoid);
     void buscarPorId(Integer projetoid);
     List<Projeto> dadosAndFuncionariosDoProjeto(Integer projetoid);
-    List<Projeto> projetoPordata(Integer projetoid, LocalDate projetodatainicio, LocalDate projetodatafim);
+    List<Projeto> projetoPordata(LocalDate projetodatainicio, LocalDate projetodatafim);
 
 }

@@ -1,17 +1,24 @@
 package com.ac2.empresa.controllers;
 
-import com.ac2.empresa.dtos.ProjetoDTO;
-import com.ac2.empresa.dtos.ThunderDTOPRojeto;
-import com.ac2.empresa.models.Projeto;
-import com.ac2.empresa.dtos.FuncionarioDTO;
-import com.ac2.empresa.services.ProjetoServiceImp;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ac2.empresa.dtos.FuncionarioDTO;
+import com.ac2.empresa.dtos.ProjetoDTO;
+import com.ac2.empresa.dtos.dtoRequest.ThunderDTO3B;
+import com.ac2.empresa.dtos.dtoRequest.ThunderDTO3A;
+import com.ac2.empresa.models.Projeto;
+import com.ac2.empresa.services.ProjetoServiceImp;
 
 
 
@@ -53,15 +60,15 @@ public class ProjetoController {
     }
 
     @GetMapping("/tudoProjeto")
-    public List<Projeto> dadosAndFuncionariosDoProjeto(@RequestBody ThunderDTOPRojeto dto) {
+    public List<Projeto> dadosAndFuncionariosDoProjeto(@RequestBody ThunderDTO3A dto) {
         List<Projeto> projetos = projetoServiceImp.dadosAndFuncionariosDoProjeto(dto.projetoid());
 
         return projetos;
     }
 
     @GetMapping("/datainicio")
-    public List<Projeto> projetoPorData(@RequestBody Integer projetoid, LocalDate projetodatainicio, LocalDate projetodatafim) {
-        List<Projeto> projetosData = projetoServiceImp.projetoPordata(projetoid, projetodatainicio, projetodatafim);
+    public List<Projeto> projetoPorData(@RequestBody ThunderDTO3B dto) {
+        List<Projeto> projetosData = projetoServiceImp.projetoPordata(dto.projetodatainicio(), dto.projetodatafim());
 
         return projetosData;
     }

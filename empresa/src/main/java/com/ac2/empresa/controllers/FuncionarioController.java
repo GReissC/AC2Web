@@ -3,24 +3,23 @@ package com.ac2.empresa.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ac2.empresa.dtos.FuncionarioDTO;
+import com.ac2.empresa.dtos.dtoRequest.ThunderDTO3C;
 import com.ac2.empresa.models.Funcionario;
 import com.ac2.empresa.services.FuncionarioServiceImp;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
 @RestController
-@RequestMapping("/empresa/Funcionario")
+@RequestMapping("api/empresa/funcionariocontroller")
 public class FuncionarioController {
 
     @Autowired
@@ -46,12 +45,11 @@ public class FuncionarioController {
     public void deleteFuncionario(@RequestBody Integer funcionarioid) {
         funcionarioServiceImp.deletar(funcionarioid);
     }
-    
+
     @GetMapping("/projetosatuais")
-    public List<Funcionario> projetosEnvolvido(@RequestBody Integer funcionarioid) {
-        List<Funcionario> funcionarios = funcionarioServiceImp.projetosEnvolvidos(funcionarioid);
+    public List<Funcionario> projetosEnvolvido(@RequestBody ThunderDTO3C dto) {
+        List<Funcionario> funcionarios = funcionarioServiceImp.projetosEnvolvidos(dto.funcionarioid());
         return funcionarios;
     }
-    
-    
+
 }

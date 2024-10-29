@@ -15,7 +15,6 @@ public interface ProjetoRepository extends JpaRepository<Projeto, Integer> {
                 Select p From Projeto p
                 Left Join Fetch funcionarios
                 Where p.id = :projetoid
-
             """)
     List<Projeto> query3A(@Param("projetoid")Integer projetoid);
 

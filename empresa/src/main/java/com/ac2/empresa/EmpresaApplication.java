@@ -34,9 +34,11 @@ public class EmpresaApplication {
 			return args -> {
 				var f1 = new Funcionario("A");
 				var f2 = new Funcionario("B");
+				var f3 = new Funcionario("C");
+				var f4 = new Funcionario("D");
 
-				var p1 = new Projeto("Projeto 01", LocalDate.of(2024, 2, 1), LocalDate.of(2024, 6, 5));
-				var p2 = new Projeto("Projeto 02", LocalDate.of(2024, 3, 2), LocalDate.of(2024, 7, 6));
+				var p1 = new Projeto("Projeto 01", LocalDate.of(2024, 2, 1), LocalDate.of(2025, 6, 5));
+				var p2 = new Projeto("Projeto 02", LocalDate.of(2024, 3, 2), LocalDate.of(2025, 7, 6));
 
 				var s1 = new Setor(1, "TI");
 				var s2 = new Setor(2, "Artes");
@@ -44,12 +46,16 @@ public class EmpresaApplication {
 				setorRepository.saveAll(List.of(s1, s2));
 
 				f1.setSetor(s1);
-				f2.setSetor(s1);
+				f2.setSetor(s2);
+				f3.setSetor(s1);
+				f4.setSetor(s2);
 
 				p1.setFuncionarios(List.of(f1));
 				p2.setFuncionarios(List.of(f2));
+				p1.setFuncionarios(List.of(f3));
+				p2.setFuncionarios(List.of(f4));
 
-				funcionarioRepository.saveAll(List.of(f1, f2));
+				funcionarioRepository.saveAll(List.of(f1, f2, f3, f4));
 				projetoRepository.saveAll(List.of(p1, p2));
 		};
 	};

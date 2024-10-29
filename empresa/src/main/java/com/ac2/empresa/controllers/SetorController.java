@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ac2.empresa.dtos.SetorDTO;
 import com.ac2.empresa.models.Setor;
-import com.ac2.empresa.repositories.SetorRepository;
 import com.ac2.empresa.services.SetorServiceImp;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
+import com.ac2.empresa.dtos.dtoRequest.ThunderDTO3D;
 
 
 @RestController
-@RequestMapping("/empresa/Setor")
+@RequestMapping("api/empresa/setorcontroller")
 public class SetorController {
 
     @Autowired
@@ -49,8 +49,8 @@ public class SetorController {
     }
 
     @GetMapping("/setorF")
-    public List<Setor> buscarFuncionariosSetor(@RequestParam Integer setorid) {
-        List<Setor> setorFuncionario = setorServiceImp.buscarFuncionarios(setorid);
+    public List<Setor> buscarFuncionariosSetor(@RequestParam ThunderDTO3D dto) {
+        List<Setor> setorFuncionario = setorServiceImp.buscarFuncionarios(dto.setorid());
         return setorFuncionario;
     }
     

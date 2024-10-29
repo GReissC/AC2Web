@@ -78,7 +78,7 @@ public class ProjetoServiceImp implements ProjetoService {
     }
 
     @Override
-    public List<Projeto> projetoPordata(Integer projetoid, LocalDate projetodatainicio, LocalDate projetodatafim) {
+    public List<Projeto> projetoPordata(LocalDate projetodatainicio, LocalDate projetodatafim) {
         List<Projeto> projetosData = projetoRepository.query3B(null, null);
         return projetosData;
     };
