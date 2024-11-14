@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ac2.empresa.dtos.FuncionarioDTO;
+import com.ac2.empresa.dtos.ProjetoDTO;
+import com.ac2.empresa.dtos.dtoRequest.ThunderDTO3CResposta;
 import com.ac2.empresa.models.Funcionario;
+import com.ac2.empresa.models.Projeto;
 import com.ac2.empresa.repositories.FuncionarioRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -45,9 +48,18 @@ public void deletar(Integer funcionarioid) {
 }
 
 @Override
-public List<Funcionario> projetosEnvolvidos(Integer funcionarioid) {
-    List<Funcionario> funcionarios = funcionarioRepository.query3C(funcionarioid);
-    return funcionarios;
+public ThunderDTO3CResposta projetosEnvolvidos(Integer funcionarioid) {
+    List<Projeto> projetos = funcionarioRepository.query3C(funcionarioid);
+    List<ProjetoDTO> projetosDTO = projetos.stream().map((Projeto p) ->{
+        return ProjetoDTO.builder()
+                        .projetodescricaodto(p.getProjetodescricao())
+                        .projetodatainiciodto(p.getProjetodatainicio())
+                        .projetodatafimdto(p.getProjetodatafim())
+                        .build();
+    }).toList();
+    return ThunderDTO3CResposta.builder()
+    .projetoDTO(projetosDTO)
+    .build();
 }
 
 }

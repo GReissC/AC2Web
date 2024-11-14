@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ac2.empresa.dtos.FuncionarioDTO;
 import com.ac2.empresa.dtos.dtoRequest.ThunderDTO3C;
+import com.ac2.empresa.dtos.dtoRequest.ThunderDTO3CResposta;
 import com.ac2.empresa.models.Funcionario;
 import com.ac2.empresa.services.FuncionarioServiceImp;
 
@@ -47,9 +48,8 @@ public class FuncionarioController {
     }
 
     @GetMapping("/projetosatuais")
-    public List<Funcionario> projetosEnvolvido(@RequestBody ThunderDTO3C dto) {
-        List<Funcionario> funcionarios = funcionarioServiceImp.projetosEnvolvidos(dto.funcionarioid());
-        return funcionarios;
+    public ThunderDTO3CResposta projetosEnvolvido(@RequestBody ThunderDTO3C dto) {
+        return funcionarioServiceImp.projetosEnvolvidos(dto.funcionarioid());
     }
 
 }
